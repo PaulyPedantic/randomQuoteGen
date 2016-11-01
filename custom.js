@@ -36,7 +36,6 @@ function hueFlip() {
 	$('#box').addClass("card " + newHue + " darken-4");
 	$('button').addClass("waves-effect btn-flat " + newHue + " accent-4");
 	$('a').addClass("waves-effect btn-flat " + newHue + " accent-4");
-	$('#genbtn').addClass("right");
 
 };
 
