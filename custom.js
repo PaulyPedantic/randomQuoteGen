@@ -1,8 +1,12 @@
 //get quotes from andrux api thx andres
 var thisQuote = '';
 var author = '';
+var categories = ['inspire', 'management', 'sports', 'life', 'funny', 'love', 'art', 'students'];
+var category = categories[Math.floor(Math.random() * categories.length)];
 
-function getQuote() {
+var reqUrl = 'http://quotes.rest/qod.json?category=' + category;
+
+function getQuote(url) {
 	var xmlhttp = new XMLHttpRequest();
 
 	xmlhttp.onreadystatechange = function() {
@@ -17,7 +21,7 @@ function getQuote() {
 			$('a').attr("href", "https://twitter.com/intent/tweet?text=" + encodeURIComponent(thisQuote + " ~" + author));
 		};
 	};
-	xmlhttp.open("GET", "https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous", false);
+	xmlhttp.open("GET", url, false);
 	xmlhttp.setRequestHeader('X-Mashape-Key', 'HNafX28TBqmsh49jDsou8UOiZwUQp1WEYFsjsnwlBHfj4WVpk0');
 	xmlhttp.send();
 }
@@ -41,9 +45,9 @@ function hueFlip() {
 
 //this is where the above functions actually execute
 $(document).ready(function() {
-	getQuote();
+	getQuote(reqUrl);
 	$('#genbtn').click(function() {
-		getQuote();
+		getQuote(reqUrl);
 		hueFlip();
 	});
 });
